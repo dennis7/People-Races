@@ -21,9 +21,10 @@ namespace People_Races
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            PeopleConfig.InitPeople(10000);
 
-           PeopleConfig.UpdatePeopleAge();
+
+            PeopleConfig.InitPeople(10000);
+            PeopleConfig.UpdatePeopleAge();
         }
 
 

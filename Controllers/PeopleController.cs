@@ -25,7 +25,7 @@ namespace People_Races.Controllers
 
                 ViewBag.SelectedRace = race;
                 var raceList = races.Select(s => new SelectListItem { Text= s.Name, Value = s.Name }).ToList();
-                if (!string.IsNullOrWhiteSpace(race))
+                if (!string.IsNullOrWhiteSpace(race) && raceList.Any(x=>x.Value.ToLower().Equals(race.ToLower())))
                 {
                     var selected = raceList.Where(x => x.Value.ToLower().Equals(race.ToLower())).FirstOrDefault();
                     selected.Selected = true;
