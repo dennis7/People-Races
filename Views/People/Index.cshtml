@@ -1,0 +1,75 @@
+﻿@model IEnumerable<People_Races.Models.Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+
+</div>
+<br>
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <label> Race :  </label>
+            @Html.DropDownList("ddlRace", (List<SelectListItem>)ViewBag.Races, "All", new { @onchange = "SelectionChanged();", style = "width: 180px; height:25px" })
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            Number of people : @ViewBag.PeopleCount.ToString()
+        </div>
+     </div>
+</div>
+<br>
+<div class="row">
+
+</div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayName("Race")
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Height)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GetType().Name)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <script>
+
+        function SelectionChanged() {
+            var ddlValue = $("#ddlRace").val();
+            var url = '@Html.Raw(Url.Action("Index", "People"))';
+            if (ddlValue) {
+                url = url + '?race=' + ddlValue;
+            }
+            window.location = url;
+        }
+
+
+    </script>
+
